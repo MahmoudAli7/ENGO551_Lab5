@@ -39,7 +39,6 @@ function startConnection() {
     console.log("clinetID: " + clientId);
 
     client = new Paho.MQTT.Client(host, port, clientId);
-    //client.onConnectionLost = onConnectionLost;
     client.onMessageArrived = onMessageArrived;
     client.connect({
         timeout: 4000,
@@ -53,13 +52,6 @@ function onConnect() {
     // Subscribe to your topic
     const topic = "ENGO551/Mahmoud/my_temperature";
     client.subscribe(topic);
-}
-
-function onConnectionLost(responseObject) {
-
-    if (responseObject.errorCode !== 0) {
-        console.log("onConnectionLost: " + responseObject.errorMessage);
-    }
 }
 
 function onMessageArrived(message) {
